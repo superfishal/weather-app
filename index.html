@@ -15,19 +15,52 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="col-12">
-      <!-- Search Form -->
-      <form id="citySearchForm">
-        <input type="text" placeholder="Enter City name" />
-        <button type="submit">Search</button>
-      </form>
-    </div>
+    <!-- header -->
+    <nav class="navbar navbar-default">
+      <div class="navbar-header container-fluid justify-content-center">
+        <h2 class="display-3">Weather Report!!</h2>
+      </div>
+    </nav>
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-3">
+          <!-- City Search Form -->
+          <div class="column">
+            <form id="citySearchForm" class="text-center">
+              <input type="text" placeholder="Enter City name" class="form-control" />
+              <br />
+              <button type="submit" class="btn btn-success form-control">Search</button>
+            </form>
+            <div class="list-group list-group-flush text-center">
+              <a href="#" class="list-group-item list-group-item-action">
+                Portland
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Montreal</a>
+              <a href="#" class="list-group-item list-group-item-action">Satan's Lair</a>
+              <a href="#" class="list-group-item list-group-item-action">Paradise</a>
+              <a href="#" class="list-group-item list-group-item-action">Arbitrary Rainforest</a>
+            </div>
+          </div>
+        </div>
+        <div class="jumbotron jumbotron-fluid col-12 col-sm-9 py-3">
+          <div class="container">
+          <h3 class="display-4 mb-4">City Name (03.16.22)</h3 class="display-4">
+            <p>Temp: 105F</p>
+            <p>Wind: 100MPH</p>
+            <p>Humidity: 200%</p>
+            <p>UV Index: Red Hot</p>
+          </div>
+        </div>
+        <!-- 5 day forecast element -->
+      </div>
+    </main>
     <!-- Javascript links -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
