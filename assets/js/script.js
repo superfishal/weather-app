@@ -1,5 +1,6 @@
 // grabs form input from HTML page
 var citySearchForm = document.getElementById("citySearchForm");
+var citySearchName;
 // empty array for previous city searches
 var citySearches = [];
 // submit event listener (enter or button click) on citySearchForm
@@ -10,6 +11,7 @@ citySearchForm.addEventListener("submit", function (event) {
   console.log(event.target.children[0].value.trim());
   // passes the input to and runs getCoords function
   getCoords(event.target.children[0].value.trim());
+  $("#citySearchInput").val("");
 });
 // input from citySearchForm
 function getCoords(citySearch) {
@@ -23,17 +25,19 @@ function getCoords(citySearch) {
       return response.json();
     })
     // returns second promise that resolves with the result of parsing the response body text as JSON.
-    .then(function (data) {
+    .then(function (dataCoords) {
       // console logs JSON content
-      console.log(data);
+      console.log(dataCoords);
       // passes latitude and longitude of the first city searched to getWeather
-      getWeather(data[0].lat, data[0].lon);
+      getWeather(dataCoords[0].lat, dataCoords[0].lon);
       // console logs name from JSON content
-      console.log(data[0].name);
+      console.log(dataCoords[0].name);
+      // setting city name globally
+      citySearchName = dataCoords[0].name;
       // checks if name it citySearches doesn't already exist
-      if (citySearches.indexOf(data[0].name) === -1) {
+      if (citySearches.indexOf(dataCoords[0].name) === -1) {
         // pushes name to array
-        citySearches.push(data[0].name);
+        citySearches.push(dataCoords[0].name);
         // sets local storage key: Search History and value to stringified citySearches array
         localStorage.setItem("Search History", JSON.stringify(citySearches));
       }
@@ -49,8 +53,28 @@ function getWeather(lat, lon) {
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(function (dataWeather) {
       // console logs API weather data
-      console.log(data);
+      console.log(dataWeather);
+      displayWeather(dataWeather);
     });
+}
+
+function displayWeather(dataWeather) {
+  $("#cityNameEl").text(
+    citySearchName +
+      " (" +
+      dayjs(dataWeather.current.dt * 1000).format("MM/DD/YY") +
+      ") "
+  );
+
+  // $("#current-weather-temp").text(
+  //   "Temperature: " + weatherData.main.temp.toFixed(1) + "°F"
+  // );
+  // $("#current-weather-humidity").text(
+  //   "Humidity: " + weatherData.main.humidity + "%"
+  // );
+  // $("#current-weather-wind").text(
+  //   "Wind Speed: " + weatherData.wind.speed.toFixed(1) + " mph"
+  // );
 }
