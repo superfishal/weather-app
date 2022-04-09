@@ -7,9 +7,9 @@ citySearchForm.addEventListener("submit", function (event) {
   // prevents page reloading on submit
   event.preventDefault();
   // console logs search input from user
-  console.log(event.target.children[0].value);
+  console.log(event.target.children[0].value.trim());
   // passes the input to and runs getCoords function
-  getCoords(event.target.children[0].value);
+  getCoords(event.target.children[0].value.trim());
 });
 // input from citySearchForm
 function getCoords(citySearch) {
