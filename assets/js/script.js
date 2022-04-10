@@ -58,6 +58,7 @@ function getWeather(lat, lon) {
       // console logs API weather data
       console.log(dataWeather);
       displayWeather(dataWeather);
+      displayForecast(dataWeather);
     });
 }
 
@@ -81,4 +82,13 @@ function displayWeather(dataWeather) {
     "Wind Speed: " + dataWeather.current.wind_speed + " mph"
   );
   $("#current-uv").text("UV Index: " + dataWeather.current.uvi);
+}
+function displayForecast(dataWeather) {
+  dataForecast = dataWeather.daily;
+  $("#date-icon")
+    .text(dayjs(dataForecast[1].dt * 1000).format("MM/DD/YYYY"))
+    .append(
+      `<img src="https://openweathermap.org/img/wn/${dataForecast[1].weather[0].icon}.png"></img>`
+    );
+  $("#forecast-temp").text("Temp: " + dataForecast[1].temp.day + "°F");
 }

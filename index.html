@@ -81,15 +81,17 @@
             <p id="current-uv"></p>
           </div>
           <!-- 5 day forecast element -->
-          <div class="col-12 col-sm-9 py-3 w-100">
+          <div class="forecast col-12 col-sm-9 py-3 w-100">
             <h3 class="display-4 mb-4 sm:px-5">5-Day Forecast:</h3>
             <div class="row flex-row w-100 justify-content-between">
               <div class="card m-3" style="width: 18rem">
-                <h5 class="card-header">03.21.22</h5>
+                <p id="date-icon" class="card-header"></p>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Temp:</li>
-                  <li class="list-group-item">Wind:</li>
-                  <li class="list-group-item">Humidity:</li>
+                  <li id="forecast-temp" class="list-group-item"></li>
+                  <li id="forecast-wind" class="list-group-item">Wind:</li>
+                  <li id="forecast-humidity" class="list-group-item">
+                    Humidity:
+                  </li>
                 </ul>
               </div>
               <div class="card m-3" style="width: 18rem">
