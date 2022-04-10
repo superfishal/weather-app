@@ -12,6 +12,7 @@ citySearchForm.addEventListener("submit", function (event) {
   // passes the input to and runs getCoords function
   getCoords(event.target.children[0].value.trim());
   $("#citySearchInput").val("");
+  $("div").removeClass("hide");
 });
 // input from citySearchForm
 function getCoords(citySearch) {
@@ -47,7 +48,7 @@ function getCoords(citySearch) {
 function getWeather(lat, lon) {
   // fetches One Call Weather API with latitude and longitude
   fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=2dae66028d1538a64d259cd639a030f5`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=2dae66028d1538a64d259cd639a030f5`
   )
     // fetch response for weather data into JSON
     .then(function (response) {
@@ -61,20 +62,23 @@ function getWeather(lat, lon) {
 }
 
 function displayWeather(dataWeather) {
-  $("#cityNameEl").text(
-    citySearchName +
-      " (" +
-      dayjs(dataWeather.current.dt * 1000).format("MM/DD/YY") +
-      ") "
-  );
+  $("#cityNameEl")
+    .text(
+      citySearchName +
+        " (" +
+        dayjs(dataWeather.current.dt * 1000).format("MM/DD/YY") +
+        ") "
+    )
+    .append(
+      `<img src="https://openweathermap.org/img/wn/${dataWeather.current.weather[0].icon}@2x.png"></img>`
+    );
 
-  // $("#current-weather-temp").text(
-  //   "Temperature: " + weatherData.main.temp.toFixed(1) + "°F"
-  // );
-  // $("#current-weather-humidity").text(
-  //   "Humidity: " + weatherData.main.humidity + "%"
-  // );
-  // $("#current-weather-wind").text(
-  //   "Wind Speed: " + weatherData.wind.speed.toFixed(1) + " mph"
-  // );
+  $("#current-temp").text("Temperature: " + dataWeather.current.temp + "°F");
+  $("#current-humidity").text(
+    "Humidity: " + dataWeather.current.humidity + "%"
+  );
+  $("#current-wind").text(
+    "Wind Speed: " + dataWeather.current.wind_speed + " mph"
+  );
+  $("#current-uv").text("UV Index: " + dataWeather.current.uvi);
 }
