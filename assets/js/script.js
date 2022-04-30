@@ -91,4 +91,49 @@ function displayForecast(dataWeather) {
       `<img src="https://openweathermap.org/img/wn/${dataForecast[1].weather[0].icon}.png"></img>`
     );
   $("#forecast-temp").text("Temp: " + dataForecast[1].temp.day + "°F");
+  $("#forecast-wind").text("Wind: " + dataForecast[1].wind_speed + "mph");
+  $("#forecast-humidity").text("Humidity: " + dataForecast[1].humidity + "%");
 }
+// for (i=1; i <=5; i++) {}
+//  OR
+//  $.each(dataForecast, function(i) {
+//     var templateString = '<article class="card"><h2>' + dataForecast[i].category + '</h2><p>' + dataForecast[i].name + '</p><p>' + dataForecast[i].id + '</p><button class="alertButton">Start</button></article>';
+//     $('#test12').append(templateString);
+//   })
+// for loop up to 5 in the Array generate a brand new card and use template literals
+// for each item in the array.
+
+// const $animalForm = document.querySelector('#animals-form');
+// const $displayArea = document.querySelector('#display-area');
+
+// const printResults = resultArr => {
+//   console.log(resultArr);
+
+//   const animalHTML = resultArr.map(({ id, name, personalityTraits, species, diet }) => {
+//     return `
+//   <div class="col-12 col-md-5 mb-3">
+//     <div class="card p-3" data-id=${id}>
+//       <h4 class="text-primary">${name}</h4>
+//       <p>Species: ${species.substring(0, 1).toUpperCase() + species.substring(1)}<br/>
+//       Diet: ${diet.substring(0, 1).toUpperCase() + diet.substring(1)}<br/>
+//       Personality Traits: ${personalityTraits
+//         .map(trait => `${trait.substring(0, 1).toUpperCase() + trait.substring(1)}`)
+//         .join(', ')}</p>
+//     </div>
+//   </div>
+//     `;
+//   });
+
+//   $displayArea.innerHTML = animalHTML.join('');
+// };
+
+// const getAnimals = (formData = {}) => {
+//   let queryUrl = '/api/animals?';
+
+//   Object.entries(formData).forEach(([key, value]) => {
+//     queryUrl += `${key}=${value}&`;
+//   });
+
+//   console.log(queryUrl);
+
+// };
