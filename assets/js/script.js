@@ -83,18 +83,7 @@ function displayWeather(dataWeather) {
   );
   $("#current-uv").text("UV Index: " + dataWeather.current.uvi);
 }
-function displayForecast(dataWeather) {
-  dataForecast = dataWeather.daily;
-  $("#date-icon")
-    .text(dayjs(dataForecast[1].dt * 1000).format("MM/DD/YYYY"))
-    .append(
-      `<img src="https://openweathermap.org/img/wn/${dataForecast[1].weather[0].icon}.png"></img>`
-    );
-  $("#forecast-temp").text("Temp: " + dataForecast[1].temp.day + "°F");
-  $("#forecast-wind").text("Wind: " + dataForecast[1].wind_speed + "mph");
-  $("#forecast-humidity").text("Humidity: " + dataForecast[1].humidity + "%");
-}
-// for (i=1; i <=5; i++) {}
+//
 //  OR
 //  $.each(dataForecast, function(i) {
 //     var templateString = '<article class="card"><h2>' + dataForecast[i].category + '</h2><p>' + dataForecast[i].name + '</p><p>' + dataForecast[i].id + '</p><button class="alertButton">Start</button></article>';
@@ -102,6 +91,19 @@ function displayForecast(dataWeather) {
 //   })
 // for loop up to 5 in the Array generate a brand new card and use template literals
 // for each item in the array.
+function displayForecast(dataWeather) {
+  for (i = 1; i <= 5; i++) {
+    dataForecast = dataWeather.daily;
+    $("#date-icon")
+      .text(dayjs(dataForecast[1].dt * 1000).format("MM/DD/YYYY"))
+      .append(
+        `<img src="https://openweathermap.org/img/wn/${dataForecast[1].weather[0].icon}.png"></img>`
+      );
+    $("#forecast-temp").text("Temp: " + dataForecast[1].temp.day + "°F");
+    $("#forecast-wind").text("Wind: " + dataForecast[1].wind_speed + "mph");
+    $("#forecast-humidity").text("Humidity: " + dataForecast[1].humidity + "%");
+  }
+}
 
 // const $animalForm = document.querySelector('#animals-form');
 // const $displayArea = document.querySelector('#display-area');
